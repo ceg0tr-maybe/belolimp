@@ -1,36 +1,80 @@
 #include <iostream>
 
+
 using namespace std;
 
-int main() {
+
+int main()
+{
     int n;
-    cin >> n;
+    cin>>n;
 
-    int ma[n]; 
-    int mb[n]; 
-    int t = 0; 
 
-    for (int i = 0; i < n; ++i) {
-        ma[i] = i + 1;
-    }
+    int ol[n];
 
- 
-    for (int i = 0; i < n; ++i) {
-        if (i % 2 == 0) {
-            mb[t++] = ma[i / 2]; 
-        } else {
-           
-            for (int j = t; j > 0; --j) {
-                mb[j] = mb[j - 1];
-            }
-            mb[0] = ma[i / 2 + 1];
-            t++;
+
+    for (int i=0;i<n;i++){
+        
+        
+        ol[i] = i + 1;
+        
         }
+    int nw[n];
+
+    if (n%2==0){  
+
+    int j =0;
+    int i = 0;
+
+    while (i<n/2)
+    {
+
+        nw[j] =ol[i];
+        i++;
+        j += 2;
+
+
+    }
+    j = 0;
+
+    i = 0;
+    while (i<n/2+1)
+    {
+
+        nw[j-1] =ol[n-i];
+        i++;
+        j+=2;
+
+
+
+    }}
+    else{ 
+    int j=0;
+    int i=0;
+    while (i<n/2+1)
+    {
+        nw[j] = ol[n-i-1];
+        i++;
+        j +=2;
+
     }
 
-    for (int i = 0; i < t; i++) {
-        cout << mb[i] << " ";
-    }
+    j=0;
+    
+    i=0;
 
+    while (i<n/2+1){
+        nw[j+1] = ol[i];
+        i++;
+        j += 2;
+    }
+    }
+    for (int i=n-1;i>=0;i--)
+    {
+        
+        
+    cout<<nw[i]<<" ";
+        
+    }
     return 0;
 }
