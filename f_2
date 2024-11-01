@@ -1,0 +1,47 @@
+#include <iostream>
+#include <vector>
+#include <cmath>
+
+using namespace std;
+
+int n, res = 0;
+vector<int> pos;
+
+bool ok(int r, int c) {
+    for (int i = 0; i < r; ++i) {
+        int pc = pos[i];
+        if (pc == c  abs(pc - c) == abs(i - r)  (abs(pc - c) == 2 && abs(i - r) == 1) || (abs(pc - c) == 1 && abs(i - r) == 2))
+            return false;
+    }
+    return true;
+}
+
+void place(int r) {
+    if (r == n) {
+        res++;
+        return;
+    }
+    int limit = (r == 0) ? (n + 1) / 2 : n; 
+    for (int c = 0; c < limit; ++c) {
+        if (ok(r, c)) {
+            pos[r] = c;
+            place(r + 1);
+        }
+    }
+}
+
+int main() {
+    cin >> n;
+    pos.resize(n);
+    place(0);
+    res *= 2; 
+
+    
+    if (n % 2 != 0) {
+        pos[0] = n / 2;
+        place(1);
+    }
+    
+    cout << res << endl;
+    return 0;
+}
